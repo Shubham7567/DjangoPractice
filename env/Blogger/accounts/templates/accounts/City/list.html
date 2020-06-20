@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Country{% endblock %}
+{% block content %}
+
+{% include 'accounts/search.html' %}
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">Cities</h2>
+        <a href="{% url 'accounts:add_city' %}" class="btn btn-primary">Add City</a>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            {% for city in cities %}
+            <tr>
+                <td>{{ city.id }}</td>
+                <td>{{ city.name }}</td>
+                <td>{{ city.state }}</td>
+                <td>{{ city.country }}</td>
+                <td><a class="btn btn-warning" href="{% url 'accounts:edit_city' city.id %}">Edit</a></td>
+                <td><a class="btn btn-danger" href="{% url 'accounts:delete_city' city.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

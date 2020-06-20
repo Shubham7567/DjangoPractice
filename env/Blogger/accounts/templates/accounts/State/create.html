@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">{{ title }}</h2>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}<br>
+                {{ field }}<br>
+                {{ field.errors }}
+            </div>
+            {% endfor %}
+            {% csrf_token %}
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

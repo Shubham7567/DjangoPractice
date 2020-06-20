@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogger-{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-branding">
+            <a href="#" class="brand">Blogger</a>
+        </div>
+        <div class="menu">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="{% url 'accounts:models' %}" class="nav-link">Models</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">About</a>
+                </li>
+            </ul>
+        </div>
+        <div class="right-menu">
+            <ul class="nav-list">
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <span class="nav-link">Hello {{ request.user.username }}</span>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'accounts:logout' %}" class="nav-link">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'accounts:login' %}" class="nav-link">Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <section id="Section-1">
+    {% block content %}
+    {% endblock %}
+    </section>
+</body>
+</html>

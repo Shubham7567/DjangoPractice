@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Country{% endblock %}
+{% block content %}
+<style>
+    .search-form{
+        display: flex;
+    }
+    .search-form input,select,label,button{
+        margin: 0px 5px;
+    }
+</style>
+
+{% include 'accounts/search.html' %}
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">States</h2>
+        <a href="{% url 'accounts:add_state' %}" class="btn btn-primary">Add State</a>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Country</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            {% for state in states %}
+            <tr>
+                <td>{{ state.id }}</td>
+                <td>{{ state.name }}</td>
+                <td>{{ state.country }}</td>
+                <td><a class="btn btn-warning" href="{% url 'accounts:edit_state' state.id %}">Edit</a></td>
+                <td><a class="btn btn-danger" href="{% url 'accounts:delete_state' state.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

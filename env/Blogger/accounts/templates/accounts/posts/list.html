@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+<style>
+    .search-form{
+        display: flex;
+    }
+    .search-form input,select{
+        margin: 0px 5px;
+        
+    }
+</style>
+<div class="card">
+    <div class="card-header">
+        <form method="get" class="search-form">
+            <label>Status</label>
+            {{ myFilter.form.status }}
+            <label>PublishedOn</label>
+            {{myFilter.form.publish}}
+            <label>Created</label>&nbsp;&nbsp;&nbsp;
+            <label>From</label>
+            {{myFilter.form.from_date}}
+            <label for="">To</label>
+            {{myFilter.form.to_date}}
+            <label>Slug</label>
+            {{myFilter.form.Slug}}
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">Posts</h2>
+        <a href="{% url 'accounts:add_post' %}" class="btn btn-primary">Add Post</a>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Slug</th>
+                <th>Author</th>
+                <th>Publish</th>
+                <th>Status</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            {% for post in posts %}
+            <tr>
+                <td>{{ post.id }}</td>
+                <td>{{ post.title }}</td>
+                <td>{{ post.slug }}</td>
+                <td>{{ post.author }}</td>
+                <td>{{ post.publish }}</td>
+                <td>{{ post.status }}</td>
+                <td><a href="{% url 'accounts:edit_post' post.id %}" class="btn btn-warning">Edit</a></td>
+                <td><a href="{% url 'accounts:delete_post' post.id %}" class="btn btn-danger">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

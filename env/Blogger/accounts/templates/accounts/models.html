@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Models{% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">Models</h2>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">User App</h2>
+    </div>
+    <div class="card-body">
+        <ul class="list">
+            <li class="list-item">
+                <a href="{% url 'accounts:user_list' %}" class="list-link">Users</a>
+            </li>
+            <li class="list-item">
+                <a href="{% url 'accounts:Country_List' %}" class="list-link">Country</a>
+            </li>
+            <li class="list-item">
+                <a href="{% url 'accounts:state_list' %}" class="list-link">State</a>
+            </li>
+            <li class="list-item">
+                <a href="{% url 'accounts:city_list' %}" class="list-link">City</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">Blog App</h2>
+    </div>
+    <div class="card-body">
+        <ul class="list">
+            <li class="list-item">
+                <a href="{% url 'accounts:post_list' %}" class="list-link">Posts</a>
+            </li>
+            <li class="list-item">
+                <a href="{% url 'accounts:post_list' %}" class="list-link">Comments</a>
+            </li>
+            <li class="list-item">
+                <a href="{% url 'accounts:post_list' %}" class="list-link">Likes</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
